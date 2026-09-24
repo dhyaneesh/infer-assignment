@@ -12,7 +12,7 @@ Hi, I'm Dhyaneesh. I evaluated GPT-4.1 on the Tau Bench retail domain, built eva
 
 **On screen:** Open the monitor's Overview tab.
 
-I ran the same 70 retail tasks with GPT-4.1 using a fixed task set, model, temperature, and seed.
+I ran the same 70 retail tasks with GPT-4.1 using a fixed task set, model, temperature, and nominal seed. Because the agent and user simulator are LLMs and each prompt was run once, these are descriptive results, not repeatable causal estimates.
 
 Task 105 remains in the outcome results but is excluded from diagnostics because its golden exchange is infeasible with the supplied payment state. That leaves 69 valid trajectories.
 
@@ -46,13 +46,13 @@ I compared four prompts.
 
 The baseline completed 55 of 70 tasks. It produced 81 cardinality errors, 29 unsafe write turns, and 17 illegal writes.
 
-The long improved prompt added request tracking, conditional availability, confirmation, and transition rules. It achieved the best completion, 58 of 70, and database score, 59 of 70. But cardinality only fell to 79 and illegal writes rose to 19. More instructions improved outcomes without consistently improving safety.
+The long improved prompt added request tracking, conditional availability, confirmation, and transition rules. This run completed 58 of 70 tasks and matched 59 databases. But cardinality only fell to 79, illegal writes rose to 19, and correct write actions fell from the baseline's 99 to 94.
 
 The short prompt replaced that checklist with: read, check, summarize, wait for approval, execute, and verify. Cardinality improved substantially to 63, and illegal writes fell to 16, but completion dropped to 53 of 70 and unsafe writes remained at 28.
 
-The next-action override kept the long prompt but precisely defined behavior after approval. It reduced cardinality to 64, unsafe writes to the best result of 24, and illegal writes to 16. Completion returned to 55 of 70.
+The next-action override kept the long prompt but precisely defined behavior after approval. This run recorded 64 cardinality errors, 24 unsafe writes, and 16 illegal writes. Completion returned to 55 of 70, and correct write actions remained below baseline at 95.
 
-The main result is a trade-off rather than a single winner: the long prompt maximizes completion, while the focused next-action prompt produces safer execution.
+The only substantial observed movement was cardinality, which fell from 81 to 63 or 64 for two variants. Unsafe and illegal-write differences were small or worse, and all prompt variants reduced write-action accuracy. Repeated runs are needed before attributing any difference to the prompts.
 
 ## 3:30-4:15 - Task-level evidence and reproducibility
 
@@ -74,7 +74,7 @@ I store the signals separately instead of immediately creating one reward, prese
 
 **On screen:** Return to Overview and finish on the recommendation cards.
 
-Next, I would calibrate legality against more human labels, report evaluator precision and recall, and turn the diagnostics into reward components. I would then test audio trajectories to measure STT and TTS effects separately.
+Next, I would repeat every prompt run and report uncertainty, calibrate legality against human labels, and use a different judge family to reduce self-evaluation bias. I would then test audio trajectories to measure STT and TTS effects separately.
 
 The repository includes the implementation, technical evidence, reproducible monitor, and Codex session transcripts. Thank you.
 
