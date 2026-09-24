@@ -1,0 +1,41 @@
+{
+  "simulations_run": 70,
+  "total_simulations": 69,
+  "excluded_task_ids": [
+    "105"
+  ],
+  "passed": 54,
+  "failed": 15,
+  "pass_rate": 0.782608695652174,
+  "db_matches": 56,
+  "db_match_rate": 0.8115942028985508,
+  "read_actions": {
+    "matched": 211,
+    "total": 218
+  },
+  "write_actions": {
+    "matched": 98,
+    "total": 113
+  },
+  "agent_cost": 3.7366040000000003,
+  "user_cost": 0.8766699999999998,
+  "total_cost": 4.613274000000001,
+  "total_duration_seconds": 2433.009651203931,
+  "failed_task_ids": [
+    "2",
+    "4",
+    "38",
+    "57",
+    "59",
+    "76",
+    "20",
+    "34",
+    "63",
+    "71",
+    "91",
+    "98",
+    "107",
+    "109",
+    "112"
+  ]
+}

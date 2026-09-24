@@ -1,0 +1,35 @@
+.monitor-page { display: grid; gap: 20px; padding-bottom: 40px; }
+.monitor-two-column { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.monitor-metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.monitor-metric-card { min-height: 102px; display: flex; flex-direction: column; justify-content: center; gap: 5px; padding: 2px 0; }
+.monitor-metric-label { color: var(--muted-foreground); font-size: 12px; font-weight: 650; letter-spacing: .02em; text-transform: uppercase; }
+.monitor-metric-value { color: var(--foreground); font-size: clamp(20px, 2.3vw, 30px); font-weight: 720; line-height: 1.12; }
+.monitor-metric-detail { color: var(--muted-foreground); font-size: 12px; line-height: 1.45; }
+.monitor-timeline { display: grid; gap: 0; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--card); }
+.monitor-timeline-item { display: grid; grid-template-columns: 44px 1fr; gap: 14px; padding: 18px 20px; border-bottom: 1px solid var(--border); }
+.monitor-timeline-item:last-child { border-bottom: 0; }
+.monitor-timeline-index { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; color: var(--primary-foreground); background: var(--primary); font-weight: 700; }
+.monitor-timeline-item h3 { margin: 7px 0 4px; font-size: 16px; }
+.monitor-timeline-item p { margin: 0; color: var(--muted-foreground); line-height: 1.55; }
+.monitor-tag { display: inline-flex; padding: 2px 8px; border-radius: 999px; background: var(--muted); color: var(--muted-foreground); font-size: 11px; font-weight: 700; text-transform: uppercase; }
+.monitor-extension-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.monitor-extension-body { display: grid; gap: 12px; }
+.monitor-extension-body code { display: block; padding: 10px 12px; border-radius: 8px; overflow-wrap: anywhere; background: var(--muted); color: var(--foreground); }
+.monitor-extension-body p { margin: 0; color: var(--muted-foreground); line-height: 1.55; }
+.monitor-list { margin: 0; padding-left: 20px; display: grid; gap: 9px; color: var(--muted-foreground); line-height: 1.5; }
+.monitor-hypothesis-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.monitor-hypothesis-grid > div { padding: 16px 18px; border: 1px solid var(--border); border-radius: 12px; background: var(--card); }
+.monitor-hypothesis-grid span { color: var(--muted-foreground); font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.monitor-hypothesis-grid p { margin: 7px 0 0; line-height: 1.55; }
+.monitor-prompt-files { display: grid; gap: 8px; }
+.monitor-prompt-files details { border: 1px solid var(--border); border-radius: 9px; overflow: hidden; }
+.monitor-prompt-files summary { display: flex; justify-content: space-between; gap: 12px; padding: 11px 13px; cursor: pointer; font-size: 13px; font-weight: 650; }
+.monitor-prompt-files summary span:last-child { color: var(--muted-foreground); font-weight: 500; white-space: nowrap; }
+.monitor-prompt-files pre { max-height: 440px; overflow: auto; margin: 0; padding: 14px; border-top: 1px solid var(--border); background: var(--muted); color: var(--foreground); font-size: 12px; line-height: 1.55; white-space: pre-wrap; }
+.monitor-controls { display: flex; flex-wrap: wrap; gap: 10px; }
+.monitor-empty { margin: 40px; padding: 28px; border: 1px dashed var(--border); border-radius: 12px; color: var(--muted-foreground); text-align: center; }
+@media (max-width: 900px) {
+  .monitor-two-column, .monitor-extension-grid, .monitor-hypothesis-grid { grid-template-columns: 1fr; }
+  .monitor-timeline-item { grid-template-columns: 36px 1fr; padding: 15px; }
+  .monitor-prompt-files summary { align-items: flex-start; flex-direction: column; }
+}

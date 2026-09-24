@@ -206,6 +206,11 @@ tempCodeRunnerFile.py
 # Ruff stuff:
 .ruff_cache/
 
+# Local review and rendering artifacts
+tmp/
+**/.playwright-cli/
+**/output/playwright/
+
 # PyPI configuration file
 .pypirc
 

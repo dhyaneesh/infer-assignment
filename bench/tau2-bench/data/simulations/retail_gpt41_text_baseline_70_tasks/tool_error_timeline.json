@@ -1,0 +1,117 @@
+{
+  "error_count": 14,
+  "tasks_with_errors": [
+    "105",
+    "106",
+    "11",
+    "33",
+    "34",
+    "35",
+    "38",
+    "55",
+    "66",
+    "68",
+    "76",
+    "86"
+  ],
+  "tool_errors": [
+    {
+      "task_id": "38",
+      "reward": 0.0,
+      "turn_idx": 5,
+      "id": "call_x5Q1bhEBbyms0uOVjbuXrmce",
+      "content": "Error: User not found"
+    },
+    {
+      "task_id": "76",
+      "reward": 0.0,
+      "turn_idx": 22,
+      "id": "call_XHsbBK2FpMjrmFtKUv6ZMji4",
+      "content": "Error: The number of items to be exchanged should match"
+    },
+    {
+      "task_id": "106",
+      "reward": 1.0,
+      "turn_idx": 5,
+      "id": "call_5j21MewMfI382wMteIDh0JOf",
+      "content": "Error: User not found"
+    },
+    {
+      "task_id": "11",
+      "reward": 1.0,
+      "turn_idx": 16,
+      "id": "call_BbiCZ7nfHk9uRUxLxN6ivtJT",
+      "content": "Error: Payment method should be the original payment method"
+    },
+    {
+      "task_id": "11",
+      "reward": 1.0,
+      "turn_idx": 17,
+      "id": "call_kR91CLLNJdqwxuN1u9HSSvpX",
+      "content": "Error: Payment method should be the original payment method"
+    },
+    {
+      "task_id": "33",
+      "reward": 1.0,
+      "turn_idx": 21,
+      "id": "call_GsR377nz63K2PuCdpqPW0AOt",
+      "content": "Error: The number of items to be exchanged should match"
+    },
+    {
+      "task_id": "35",
+      "reward": 1.0,
+      "turn_idx": 5,
+      "id": "call_nNGHzjIOfN3VOfxKCUxawMWp",
+      "content": "Error: User not found"
+    },
+    {
+      "task_id": "34",
+      "reward": 0.0,
+      "turn_idx": 19,
+      "id": "call_LJqrVOlMnHS5E8z8WQMi70fB",
+      "content": "Error: The number of items to be exchanged should match"
+    },
+    {
+      "task_id": "34",
+      "reward": 0.0,
+      "turn_idx": 23,
+      "id": "call_v2mU5aOHtOXUZahLd3urypqJ",
+      "content": "Error: The number of items to be exchanged should match"
+    },
+    {
+      "task_id": "55",
+      "reward": 1.0,
+      "turn_idx": 5,
+      "id": "call_IgworR71lRwJN7P5ehRYESWe",
+      "content": "Error: User not found"
+    },
+    {
+      "task_id": "68",
+      "reward": 1.0,
+      "turn_idx": 7,
+      "id": "call_tbl3i04HDEpjMg7dKHt2RNcP",
+      "content": "Error: User not found"
+    },
+    {
+      "task_id": "66",
+      "reward": 1.0,
+      "turn_idx": 26,
+      "id": "call_4uiuok4QGcVybjWVty50OPwa",
+      "content": "Error: Variant not found"
+    },
+    {
+      "task_id": "86",
+      "reward": 1.0,
+      "turn_idx": 25,
+      "id": "call_XCRAibvo26cRbnuThTZblVn9",
+      "content": "Error: Non-delivered order cannot be exchanged"
+    },
+    {
+      "task_id": "105",
+      "reward": 1.0,
+      "turn_idx": 32,
+      "id": "call_z22IlixKp9Ko7Z9eQXr6GfR5",
+      "content": "Error: Insufficient gift card balance to pay for the price difference"
+    }
+  ]
+}

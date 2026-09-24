@@ -1,0 +1,110 @@
+{
+  "scope": {
+    "domain": "retail",
+    "simulations_run": 70,
+    "simulations_analyzed": 69,
+    "excluded_tasks": ["105"],
+    "exclusion_reason": "Golden action is infeasible under the supplied account state.",
+    "scored_failures": 15,
+    "note": "Task lists may overlap outside primary_failure_categories."
+  },
+  "primary_failure_categories": [
+    {
+      "id": "structured_selection_and_facts",
+      "tasks": ["2", "4", "20", "109"],
+      "count": 4,
+      "grader": "hybrid"
+    },
+    {
+      "id": "policy_feasibility_and_fallback",
+      "tasks": ["34", "57", "63", "91", "107"],
+      "count": 5,
+      "grader": "hybrid"
+    },
+    {
+      "id": "entity_action_binding",
+      "tasks": ["38", "59", "71", "76", "98", "112"],
+      "count": 6,
+      "grader": "hybrid"
+    }
+  ],
+  "hidden_trajectory_errors": [
+    {
+      "id": "tool_call_cardinality_violation",
+      "unit": "assistant_turn",
+      "definition": "len(tool_calls) > 1",
+      "independent_metric": true,
+      "violating_turns": 81,
+      "affected_tasks": 52,
+      "passing_tasks": 39,
+      "failing_tasks": 13,
+      "maximum_calls_in_one_turn": 12,
+      "grader": "deterministic"
+    },
+    {
+      "id": "action_legality_violation",
+      "unit": "attempted_write_action",
+      "definition": "The attempted action must be permitted by policy and the pre-action state, authorized by the user, and bound to the intended entity and arguments.",
+      "independent_metric": true,
+      "status": "diagnostic_backtest_complete",
+      "attempted_writes_evaluated": 122,
+      "illegal_actions": 17,
+      "legal_actions": 105,
+      "uncertain_actions": 0,
+      "affected_tasks": 14,
+      "tasks": ["11", "33", "34", "42", "44", "57", "58", "66", "76", "86", "91", "104", "107", "112"],
+      "legality_only_tasks": ["44", "57"],
+      "grader": "llm_with_structured_parser_validation"
+    },
+    {
+      "id": "unsafe_write_turn",
+      "unit": "assistant_turn",
+      "definition": "write_call_count > 1 OR any(write_result.error)",
+      "independent_metric": true,
+      "violating_turns": 29,
+      "affected_tasks": 25,
+      "passing_tasks": 16,
+      "failing_tasks": 9,
+      "breakdown": {
+        "multiple_write_turns": 25,
+        "write_error_turns": 7,
+        "overlap_turns": 3,
+        "individual_failed_write_attempts": 8
+      },
+      "grader": "deterministic"
+    },
+    {
+      "id": "post_item_modification_write",
+      "tasks": ["104"],
+      "grader": "deterministic"
+    }
+  ],
+  "environment_defects": [
+    {
+      "id": "loose_pending_status_guard",
+      "tasks": ["104"],
+      "detail": "Address modification accepts any status containing the word pending."
+    }
+  ],
+  "evaluator_defects": [
+    {
+      "id": "action_not_in_reward_basis",
+      "affected_tasks": 69
+    },
+    {
+      "id": "policy_call_count_not_scored",
+      "affected_tasks": 52
+    }
+  ],
+  "task_data_defects": [
+    {
+      "id": "missing_golden_product",
+      "tasks": ["2", "4"],
+      "value": "6086499569"
+    },
+    {
+      "id": "email_punctuation_mismatch",
+      "tasks": ["38"]
+    }
+  ]
+}

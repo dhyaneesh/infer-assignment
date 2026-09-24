@@ -1,0 +1,86 @@
+{
+  "deterministic": {
+    "cardinality_violations": [
+      {
+        "turn_idx": 8,
+        "tool_count": 4,
+        "tools": [
+          "get_order_details",
+          "get_order_details",
+          "get_order_details",
+          "get_order_details"
+        ]
+      },
+      {
+        "turn_idx": 15,
+        "tool_count": 2,
+        "tools": [
+          "cancel_pending_order",
+          "cancel_pending_order"
+        ]
+      }
+    ],
+    "unsafe_write_turns": [
+      {
+        "turn_idx": 15,
+        "write_count": 2,
+        "failed_write_count": 0,
+        "tools": [
+          "cancel_pending_order",
+          "cancel_pending_order"
+        ]
+      }
+    ]
+  },
+  "legality": {
+    "reward": 0.0,
+    "db_check": null,
+    "env_assertions": null,
+    "action_checks": null,
+    "action_legality_checks": [
+      {
+        "call_id": "call_mEBF6fXXjdaQJLxTj79VNBRB",
+        "turn_idx": 15,
+        "tool_name": "cancel_pending_order",
+        "arguments": {
+          "order_id": "#W5056519",
+          "reason": "ordered by mistake"
+        },
+        "verdict": "illegal",
+        "violation_types": [
+          "wrong_sequence"
+        ],
+        "policy_evidence": "Turn protocol: On every turn, either send one message to the user or make exactly one tool call. Never issue multiple tool calls in one turn.",
+        "conversation_evidence": "At turn [15], two WRITE_ACTION tool calls were made in the same turn.",
+        "reasoning": "The assistant made two cancel_pending_order tool calls in the same turn, violating the policy that only one tool call is allowed per turn.",
+        "correct_action": "The assistant should have made only one cancel_pending_order tool call per turn, waiting for the result before issuing the next."
+      },
+      {
+        "call_id": "call_W7Q4B0imVACcqS1xOx3oYxAV",
+        "turn_idx": 15,
+        "tool_name": "cancel_pending_order",
+        "arguments": {
+          "order_id": "#W5995614",
+          "reason": "ordered by mistake"
+        },
+        "verdict": "illegal",
+        "violation_types": [
+          "wrong_sequence"
+        ],
+        "policy_evidence": "Turn protocol: On every turn, either send one message to the user or make exactly one tool call. Never issue multiple tool calls in one turn.",
+        "conversation_evidence": "At turn [15], two WRITE_ACTION tool calls were made in the same turn.",
+        "reasoning": "The assistant made two cancel_pending_order tool calls in the same turn, violating the policy that only one tool call is allowed per turn.",
+        "correct_action": "The assistant should have made only one cancel_pending_order tool call per turn, waiting for the result before issuing the next."
+      }
+    ],
+    "nl_assertions": null,
+    "communicate_checks": null,
+    "reward_basis": [
+      "DB"
+    ],
+    "reward_breakdown": null,
+    "info": {
+      "diagnostic_only": true
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "deterministic": {
+    "cardinality_violations": [
+      {
+        "turn_idx": 12,
+        "tool_count": 2,
+        "tools": [
+          "get_order_details",
+          "get_order_details"
+        ]
+      },
+      {
+        "turn_idx": 17,
+        "tool_count": 2,
+        "tools": [
+          "get_product_details",
+          "get_product_details"
+        ]
+      },
+      {
+        "turn_idx": 22,
+        "tool_count": 3,
+        "tools": [
+          "modify_pending_order_items",
+          "modify_pending_order_address",
+          "modify_pending_order_items"
+        ]
+      }
+    ],
+    "unsafe_write_turns": [
+      {
+        "turn_idx": 22,
+        "write_count": 3,
+        "failed_write_count": 0,
+        "tools": [
+          "modify_pending_order_items",
+          "modify_pending_order_address",
+          "modify_pending_order_items"
+        ]
+      }
+    ]
+  },
+  "legality": {
+    "reward": 0.0,
+    "db_check": null,
+    "env_assertions": null,
+    "action_checks": null,
+    "action_legality_checks": [
+      {
+        "call_id": "call_uGZ1pXajrzXHyjk8DnI0OZ9R",
+        "turn_idx": 22,
+        "tool_name": "modify_pending_order_items",
+        "arguments": {
+          "order_id": "#W4219264",
+          "item_ids": [
+            "8886009523"
+          ],
+          "new_item_ids": [
+            "2407258246"
+          ],
+          "payment_method_id": "credit_card_1620755"
+        },
+        "verdict": "legal",
+        "violation_types": [],
+        "policy_evidence": "Policy allows modifying items in a pending order after explicit confirmation, with correct payment method and all details confirmed.",
+        "conversation_evidence": "User confirmed the exact item to swap, the replacement, and to keep all other items unchanged. Payment method was specified and used.",
+        "reasoning": "The user was informed of the action details, price difference, and confirmed the change. The operation was performed on a pending order, with all required confirmations and correct arguments.",
+        "correct_action": null
+      },
+      {
+        "call_id": "call_2YBBzIvd3ZOXzcwSOD7cOdOc",
+        "turn_idx": 22,
+        "tool_name": "modify_pending_order_address",
+        "arguments": {
+          "order_id": "#W4219264",
+          "address1": "144 Lakeview Drive",
+          "address2": "Suite 925",
+          "city": "New York",
+          "state": "NY",
+          "country": "USA",
+          "zip": "10228"
+        },
+        "verdict": "illegal",
+        "violation_types": [
+          "state_precondition_violation",
+          "wrong_sequence"
+        ],
+        "policy_evidence": "Policy: After modifying items in a pending order, the order status changes to 'pending (items modified)' and no further modifications (including address) are allowed.",
+        "conversation_evidence": "The modify_pending_order_items call was made first, changing the order status to 'pending (item modified)'. The address modification was attempted immediately after.",
+        "reasoning": "Once items are modified in a pending order, no further modifications (including address changes) are permitted. The address change was attempted after the item modification, violating the state precondition and sequence rules.",
+        "correct_action": "The address change should have been performed before the item modification, or the user should have been informed that address changes are no longer possible after item modification."
+      },
+      {
+        "call_id": "call_arpo0GbzxHlhBLTatGPbhXm1",
+        "turn_idx": 22,
+        "tool_name": "modify_pending_order_items",
+        "arguments": {
+          "order_id": "#W6729841",
+          "item_ids": [
+            "3076708684"
+          ],
+          "new_item_ids": [
+            "8302289002"
+          ],
+          "payment_method_id": "credit_card_1620755"
+        },
+        "verdict": "legal",
+        "violation_types": [],
+        "policy_evidence": "Policy allows modifying items in a pending order after explicit confirmation, with correct payment method and all details confirmed.",
+        "conversation_evidence": "User confirmed the exact item to swap, the replacement, and to keep all other items unchanged. Payment method was specified and used.",
+        "reasoning": "The user was informed of the action details, price difference, and confirmed the change. The operation was performed on a pending order, with all required confirmations and correct arguments.",
+        "correct_action": null
+      }
+    ],
+    "nl_assertions": null,
+    "communicate_checks": null,
+    "reward_basis": [
+      "DB"
+    ],
+    "reward_breakdown": null,
+    "info": {
+      "diagnostic_only": true
+    }
+  }
+}

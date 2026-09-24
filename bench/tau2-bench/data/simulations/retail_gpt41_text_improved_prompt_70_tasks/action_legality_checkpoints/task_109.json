@@ -1,0 +1,143 @@
+{
+  "deterministic": {
+    "cardinality_violations": [
+      {
+        "turn_idx": 10,
+        "tool_count": 2,
+        "tools": [
+          "get_order_details",
+          "get_order_details"
+        ]
+      },
+      {
+        "turn_idx": 15,
+        "tool_count": 3,
+        "tools": [
+          "modify_pending_order_address",
+          "modify_user_address",
+          "get_product_details"
+        ]
+      }
+    ],
+    "unsafe_write_turns": [
+      {
+        "turn_idx": 15,
+        "write_count": 2,
+        "failed_write_count": 0,
+        "tools": [
+          "modify_pending_order_address",
+          "modify_user_address"
+        ]
+      },
+      {
+        "turn_idx": 21,
+        "write_count": 1,
+        "failed_write_count": 1,
+        "tools": [
+          "exchange_delivered_order_items"
+        ]
+      }
+    ]
+  },
+  "legality": {
+    "reward": 0.0,
+    "db_check": null,
+    "env_assertions": null,
+    "action_checks": null,
+    "action_legality_checks": [
+      {
+        "call_id": "call_xfN1DEJug5lAZe4abgjs6IbG",
+        "turn_idx": 15,
+        "tool_name": "modify_pending_order_address",
+        "arguments": {
+          "order_id": "#W1092119",
+          "address1": "760 Elm Avenue",
+          "address2": "Suite 564",
+          "city": "Houston",
+          "state": "TX",
+          "country": "USA",
+          "zip": "77034"
+        },
+        "verdict": "legal",
+        "violation_types": [],
+        "policy_evidence": "Policy allows modifying the shipping address of a pending order after user confirmation.",
+        "conversation_evidence": "User confirmed updating order #W1092119 to the new address in turn 14.",
+        "reasoning": "The order is pending, the user confirmed the address update, and the action is permitted by policy.",
+        "correct_action": null
+      },
+      {
+        "call_id": "call_oGCawQhNC2bEAacHS7c4VnTg",
+        "turn_idx": 15,
+        "tool_name": "modify_user_address",
+        "arguments": {
+          "user_id": "sophia_martin_8570",
+          "address1": "760 Elm Avenue",
+          "address2": "Suite 564",
+          "city": "Houston",
+          "state": "TX",
+          "country": "USA",
+          "zip": "77034"
+        },
+        "verdict": "legal",
+        "violation_types": [],
+        "policy_evidence": "Policy allows modifying the user's default address after authentication and confirmation.",
+        "conversation_evidence": "User confirmed setting the new address as default in turn 14.",
+        "reasoning": "User is authenticated, requested the change, and confirmed the new default address.",
+        "correct_action": null
+      },
+      {
+        "call_id": "call_BPRurV9sEdkDv7hYv9LrnXEo",
+        "turn_idx": 21,
+        "tool_name": "exchange_delivered_order_items",
+        "arguments": {
+          "order_id": "#W1603792",
+          "item_ids": [
+            "6501071631"
+          ],
+          "new_item_ids": [
+            "4913411651"
+          ],
+          "payment_method_id": "credit_card_5694100"
+        },
+        "verdict": "illegal",
+        "violation_types": [
+          "state_precondition_violation"
+        ],
+        "policy_evidence": "Exchanges can only be performed on delivered orders.",
+        "conversation_evidence": "Order #W1603792 is pending, not delivered (turn 11).",
+        "reasoning": "The attempted exchange was for a pending order, which is not allowed by policy.",
+        "correct_action": "Do not attempt exchange; instead, offer to modify the pending order or wait until delivery."
+      },
+      {
+        "call_id": "call_dbEqYvmhNBBU4D1ie8Xk2LmH",
+        "turn_idx": 27,
+        "tool_name": "modify_pending_order_items",
+        "arguments": {
+          "order_id": "#W1603792",
+          "item_ids": [
+            "6501071631"
+          ],
+          "new_item_ids": [
+            "4913411651"
+          ],
+          "payment_method_id": "credit_card_5694100"
+        },
+        "verdict": "legal",
+        "violation_types": [],
+        "policy_evidence": "Policy allows modifying items in a pending order after explicit confirmation, provided all items to be changed are collected and the user confirms no further changes are needed.",
+        "conversation_evidence": "User confirmed the modification and that this is the only change in turn 26.",
+        "reasoning": "Order is pending, user confirmed the exact modification and payment method, and all policy requirements were met.",
+        "correct_action": null
+      }
+    ],
+    "nl_assertions": null,
+    "communicate_checks": null,
+    "reward_basis": [
+      "DB"
+    ],
+    "reward_breakdown": null,
+    "info": {
+      "diagnostic_only": true
+    }
+  }
+}
